@@ -6,16 +6,12 @@ import com.velocitypowered.api.event.player.ServerPostConnectEvent;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
-import pfg.utils.MySQLFriends;
 import velocity.tcf.spaceproxy.util.MySQL;
 
 public class PlayerListener {
 
     @Subscribe
     public void onPlayerJoin(ServerPostConnectEvent event) {
-        if (MySQLFriends.playerExists(event.getPlayer().getUniqueId().toString())) {
-            MySQLFriends.addPlayer(event.getPlayer().getUniqueId().toString());
-        }
         TextComponent joined =
                 Component.text("[", NamedTextColor.GRAY)
                         .append(Component.text("+", NamedTextColor.GREEN))

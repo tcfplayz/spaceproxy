@@ -1,16 +1,12 @@
 package velocity.tcf.spaceproxy;
 
 import com.google.inject.Inject;
-import com.velocitypowered.api.command.CommandMeta;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
-import pfg.friend.FriendCommand;
-import pfg.party.PartyCommand;
 import velocity.tcf.spaceproxy.level.LevelCalculator;
-import velocity.tcf.spaceproxy.listener.PlayerListener;
 import velocity.tcf.spaceproxy.util.MySQL;
 
 import java.util.concurrent.TimeUnit;
@@ -32,7 +28,6 @@ public class SpaceProxy {
 
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
-        server.getEventManager().register(this, new PlayerListener());
         server.getScheduler()
                 .buildTask(this, () -> server.getAllServers().forEach(server -> server.getPlayersConnected().forEach(player -> {
                     LevelCalculator.maxExpAutoRenew(player);
@@ -49,9 +44,6 @@ public class SpaceProxy {
                 }))
                 .repeat(75L, TimeUnit.SECONDS)
                 .schedule();
-        CommandMeta friend = server.getCommandManager().metaBuilder("friend").aliases("f", "fr").build();
-        server.getCommandManager().register(friend, new FriendCommand());
-        CommandMeta party = server.getCommandManager().metaBuilder("party").aliases("p", "pt").build();
-        server.getCommandManager().register(party, new PartyCommand());
     }
+
 }
