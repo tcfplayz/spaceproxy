@@ -6,8 +6,8 @@ public class MySQL {
 
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://localhost:3306/spacemc?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8";
-    static final String USER = "tcfplayz";
-    static final String PASS = "mcro123123";
+    static final String USER = "eyelol";
+    static final String PASS = "progamer123";
 
     private static Connection startConnection()  {
         try {
